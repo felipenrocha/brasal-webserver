@@ -1,0 +1,19 @@
+//executar server localmente:
+
+php -S localhost:8000 -t public
+
+
+// do migrations
+php artisan migrate:reset
+
+// redo migrations;
+
+php artisan migrate
+
+// seeds 
+// fazer primeiro para ter o id estrangeiro valido para seed de tarefas
+php artisan db:seed --class=StatusSeeder
+
+
+// lembre que precisamos de um id de usuario valido para funcionar
+php artisan db:seed --class=TarefaSeeder
