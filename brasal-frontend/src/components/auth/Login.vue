@@ -65,7 +65,7 @@
       <router-link to="/register">
         <a>Criar conta </a>
       </router-link>
-    
+
       <div class='row'>
         <p v-if="erro" style="color:#d50000;">
           {{ erro }}</p>
@@ -149,10 +149,10 @@ export default {
         return error['password'][0];
       }
       else if (error['email']) {
-        errorResponse = error['email'][0];
+        return error['email'][0];
       }
       else if (error['message']) {
-        return error['message'];
+        return 'Usuário ou senha incorretos.';
       }
       return ''
     },
@@ -179,19 +179,6 @@ body {
   background: #fff;
 }
 
-.input-field input[type=date]:focus+label,
-.input-field input[type=text]:focus+label,
-.input-field input[type=email]:focus+label,
-.input-field input[type=password]:focus+label {
-  color: #e91e63;
-}
 
-.input-field input[type=date]:focus,
-.input-field input[type=text]:focus,
-.input-field input[type=email]:focus,
-.input-field input[type=password]:focus {
-  border-bottom: 2px solid #e91e63;
-  box-shadow: none;
-}
 </style>
 

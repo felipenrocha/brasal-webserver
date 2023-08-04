@@ -10,13 +10,13 @@
             <div class='col s6'>
             </div>
             <div class='col s2'>
-                <a class="btn-floating btn green" v-on:click="addTask">
+                <a class="btn-floating btn green" v-on:click="addTask" title="Criar tarefa">
                     <router-link to="/create">
-                        <i class="material-icons">note_add</i></router-link>
+                        <i placeholder="Criar tarefa" class="material-icons">note_add</i></router-link>
 
                 </a>
                 &nbsp;
-                <a href="#!" class="btn-floating btn blue" v-on:click="logout">
+                <a href="#!" class="btn-floating btn blue" v-on:click="logout" title="Sair">
                     <i class="material-icons">exit_to_app</i>
 
                 </a>
@@ -27,7 +27,7 @@
             <thead>
                 <tr>
                     <th>Título</th>
-                    <th>Data</th>
+                    <th>Data - Hora</th>
 
                     <th>Status</th>
                     <th>Editar</th>
@@ -67,9 +67,13 @@
         <!-- Seção de descrição (mostrada dinamicamente) -->
         <div v-for="(tarefa, index) in tarefas" :key="index" class="task-description">
             <div v-if="tarefa.expandido">
-                <div class="card" style="padding: 15%">
-                    <h5>{{ tarefa.titulo }}</h5>
-                    <p>{{ tarefa.descricao }}</p>
+                <div class="card" style="padding: 5%">
+                    <div class="card-content">
+                        <h5 class="title">{{ tarefa.titulo }}</h5>
+                        <h6> Data: {{ tarefa.data_tarefa }}</h6>
+
+                        <p>{{ tarefa.descricao }}</p>
+                    </div>
                 </div>
             </div>
 
@@ -127,6 +131,7 @@ export default {
 
                 axios
                     .get((API_DEV_URL + '/user'), {
+                        // token auth
                         headers: { 'Authorization': this.AuthStr }
                     })
                     .then(response => {
@@ -196,7 +201,7 @@ export default {
                 }).catch(err => {
                     // caso do token nao estar mais disponivel.
                     console.log(err);
-                    alert('Usuario foi deslogado, pro favor, entre novamente.');
+                    // alert('Usuario foi deslogado, pro favor, entre novamente.');
                 });
         },
 

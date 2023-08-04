@@ -12,11 +12,11 @@
             <div class='col s2'>
                 <a class="btn-floating btn green">
                     <router-link to="/home">
-                        <i class="material-icons">list</i></router-link>
+                        <i class="material-icons" title="Ver tarefas" >list</i></router-link>
 
                 </a>
                 &nbsp;
-                <a href="#!" class="btn-floating btn blue" v-on:click="logout">
+                <a href="#!" class="btn-floating btn blue" title="Sair" v-on:click="logout">
                     <i class="material-icons">exit_to_app</i>
 
                 </a>
@@ -157,9 +157,11 @@ export default {
                     })
                     .then(response => {
                         console.log('Resposta: ', response);
-                        this.user_id = response['data']['id']
-                        this.nome = response['data']['name']
-                        this.email = response['data']['email']
+                        this.user_id = response['data']['id'];
+                        this.nome = response['data']['name'];
+                        this.email = response['data']['email'];
+                        this.loaded = true;
+
 
 
                     })

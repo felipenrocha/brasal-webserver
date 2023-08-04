@@ -35,7 +35,7 @@
                     <div class="input-field">
                         <label for="titulo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Data</label>
 
-                        <VueDatePicker  month-name-format="long"  model-type="dd/MM/yyyy hh : mm" v-model="date" aria-placeholder="data"></VueDatePicker>
+                        <VueDatePicker  month-name-format="long"  model-type="dd/MM/yyyy - hh : mm" v-model="date" aria-placeholder="data"></VueDatePicker>
 
                     </div>
                 </div>
@@ -187,16 +187,14 @@ export default {
 
         },
         montaStatus() {
-            // monta variavel status para ser mostrada no  fropntend
-            // essa rota nao precisa de autoreizacao jwt.
+            // monta variavel status para ser mostrada no  frontend
+            // essa rota nao precisa de autorizacao jwt.
 
             axios
                 .get((API_DEV_URL + '/api/status/get'))
                 .then(response => {
 
                     response = response['data']
-
-
                     // monta status
                     for (let i = 0; i < response.length; i++) {
                         let status = response[i];
