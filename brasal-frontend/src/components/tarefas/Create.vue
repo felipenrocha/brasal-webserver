@@ -35,7 +35,7 @@
                     <div class="input-field">
                         <label for="titulo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Data</label>
 
-                        <VueDatePicker  month-name-format="long"  model-type="dd/MM/yyyy - hh : mm" v-model="date" aria-placeholder="data"></VueDatePicker>
+                        <VueDatePicker  month-name-format="long"  model-type="dd/MM/yyyy hh : mm" v-model="date" aria-placeholder="data"></VueDatePicker>
 
                     </div>
                 </div>
@@ -239,7 +239,7 @@ export default {
                         this.erro = error['response']['data'];
 
                     } else {
-                        console.log();
+                        console.log(error);
                         this.erro = error
                         alert('nao foi possivel Criar a tarefa, erro: ' + this.erro);
 

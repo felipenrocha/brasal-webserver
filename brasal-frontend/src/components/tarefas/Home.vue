@@ -23,7 +23,22 @@
 
             </div>
         </div>
-        <table class="highlight">
+        <center>
+            <div class="preloader-wrapper big active" v-if="loading">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </center>
+        <table class="highlight" v-if="!loading">
             <thead>
                 <tr>
                     <th>Título</th>
@@ -63,7 +78,19 @@
 
             </tbody>
         </table>
+        <div v-if="tarefas.length == 0 && !loading" style="padding: 10%;">
+            <center>
+                <h4>
+                    Você ainda não registrou nenhuma tarefa.
+                </h4> <router-link to="/create" style="color: white">
+                    <a class="waves-effect waves-light btn green" style="margin:10%">
 
+                        Adicionar Tarefa
+                    </a>
+                </router-link>
+
+            </center>
+        </div>
         <!-- Seção de descrição (mostrada dinamicamente) -->
         <div v-for="(tarefa, index) in tarefas" :key="index" class="task-description">
             <div v-if="tarefa.expandido">
@@ -95,6 +122,7 @@ export default {
             token: '',
             AuthStr: '',
             loaded: false,
+            loading: true,
             tarefas: []
         }
     },
@@ -103,6 +131,8 @@ export default {
         this.checkToken();
         // monta as tarefas antes de carregar a pagina
         this.montaTarefas();
+
+        this.loading = false;
     },
     methods: {
         checkToken() {
@@ -174,6 +204,8 @@ export default {
             this.tarefas[index].expandido = !this.tarefas[index].expandido;
         },
         montaTarefas() {
+       
+
             /*
             Método responsável para montar as  tarefas para serem mostradas no frontend
             */
@@ -196,7 +228,9 @@ export default {
                             status: tarefa['status_id'],
                             descricao: tarefa['descricao'],
                             expandido: false
-                        })
+                        });
+                        
+
                     }
                 }).catch(err => {
                     // caso do token nao estar mais disponivel.
@@ -209,7 +243,8 @@ export default {
         // crud functions frontend
 
         deleteTarefa(id) {
-            console.log('id tarefa', id);
+            this.loading = true;
+            this.tarefas = []
             axios
                 .delete((API_DEV_URL + '/api/tarefas/delete/' + id), {
                     headers: { 'Authorization': this.AuthStr }
@@ -217,11 +252,16 @@ export default {
                 .then(response => {
                     console.log(response);
                     //remontar tarefas
-                    location.reload();
+                    this.montaTarefas();
+                    this.loading = false;
+
                 })
                 .catch(err => {
                     // erro
                     console.log(err);
+                    this.montaTarefas();
+                    this.loading = false;
+
                     alert('Não foi possível deletar a tarefa, tente novamente mais tarde.');
                 });
         },
