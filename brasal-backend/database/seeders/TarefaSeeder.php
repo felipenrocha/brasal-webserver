@@ -19,17 +19,21 @@ class TarefaSeeder extends Seeder
             'titulo' => 'Compras',
             'descricao' => 'Comprar itens essenciais para casa.',
             'status_id' => 1,
+            'data_tarefa' => '22/11/1998 10:45',
             'responsavel_id' => 1, // O ID do usuário responsável (deve existir na tabela "users")
         ]);
         DB::table('tarefa')->insert([
             'titulo' => 'Estudar para a prova',
             'descricao' => 'Revisar os tópicos importantes para a prova.',
             'status_id' => 1,
+            'data_tarefa' => '22/11/1998 10:45',
+
             // O ID do status "Em andamento"
             'responsavel_id' => 1, // O ID do usuário responsável (deve existir na tabela "users")
         ]);
         DB::table('tarefa')->insert([
             'titulo' => 'Enviar relatório',
+            'data_tarefa' =>  '22/11/1998 10:45',
             'descricao' => 'Preparar e enviar o relatório mensal para o cliente.',
             'status_id' => 2,
             // O ID do status "Concluído"

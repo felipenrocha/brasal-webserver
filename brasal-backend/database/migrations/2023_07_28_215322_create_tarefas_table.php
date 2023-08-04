@@ -17,6 +17,7 @@ class CreateTarefasTable extends Migration
             $table->id();
             $table->string('titulo');
             $table->text('descricao')->nullable();
+            $table->string('data_tarefa');
             $table->timestamp('data_criacao')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('responsavel_id');

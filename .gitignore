@@ -1,0 +1,36 @@
+brasal-backend/vendor
+brasal-backend/.idea
+brasal-backend/Homestead.json
+brasal-backend/Homestead.yaml
+brasal-backend/.env
+brasal-backend/.phpunit.result.cache
+
+
+# Logs
+brasal-frontend/logs
+brasal-frontend/*.log
+brasal-frontend/npm-debug.log*
+brasal-frontend/yarn-debug.log*
+brasal-frontend/yarn-error.log*
+brasal-frontend/pnpm-debug.log*
+brasal-frontend/lerna-debug.log*
+
+brasal-frontend/node_modules
+brasal-frontend/.DS_Store
+brasal-frontend/dist
+brasal-frontend/dist-ssr
+brasal-frontend/coverage
+brasal-frontend/*.local
+
+brasal-frontend/cypress/videos/
+brasal-frontend/cypress/screenshots/
+
+# Editor directories and files
+brasal-frontend/.vscode/*
+brasal-frontend/!.vscode/extensions.json
+brasal-frontend/.idea
+brasal-frontend/*.suo
+brasal-frontend/*.ntvs*
+brasal-frontend/*.njsproj
+brasal-frontend/*.sln
+brasal-frontend/*.sw?
